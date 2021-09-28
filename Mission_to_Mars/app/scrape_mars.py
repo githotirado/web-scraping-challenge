@@ -132,5 +132,5 @@ def scrape():
 
     return mars_dict
 
-if (__name__) == '__main__':
+if __name__ == '__main__':
     pprint.pprint(scrape())
