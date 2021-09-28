@@ -59,6 +59,19 @@ def jpl_featured_image():
 
     return featured_image_url
 
+def mars_weather():
+    browser = init_browser()
+    # Mars weather site
+    weather_url = 'https://twitter.com/marswxreport?lang=en'
+    browser.visit(weather_url)
+    html = browser.html
+    weather_soup = bs(html, 'html.parser')
+    # Retrieve latest tweet with Mars weather info
+    mars_weather = weather_soup.find_all('p', class_='TweetTextSize TweetTextSize--normal js-tweet-text tweet-text')[0].text
+    browser.quit()
+
+    return mars_weather
+
 def mars_facts():
     # Create a dataframe from the space-facts.com mars page
     print("\n\n*** Scraping space-facts ***")
@@ -67,8 +80,8 @@ def mars_facts():
     mars_df = tables[0]
 
     # clean the dataframe and export to HTML
-    mars_df.columns = ['parameter', 'value']
-    mars_df.set_index('parameter', inplace=True)
+    mars_df.columns = ['description', 'value']
+    mars_df.set_index('description', inplace=True)
     # mars_df.to_html('visualizations/table.html')
     html_table = mars_df.to_html()
     html_table = html_table.replace('\n', '')
@@ -126,6 +139,7 @@ def scrape():
     mars_dict = {
         'mars_news': nasa_mars_news(),
         'mars_featured_image': jpl_featured_image(),
+        'mars_weather': mars_weather(),
         'mars_facts': mars_facts(),
         'mars_hemispheres': hemispheres()
     }
