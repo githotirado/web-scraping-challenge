@@ -12,5 +12,5 @@ Web application that scrapes various websites for data related to the Mission to
 # Notes, debugging testing issues
 * (Note) Allow 15-20 seconds after clicking the 'scrape' button because there are 5-second sleep delays put in after each scrape in order to allow any browser activity to catch up.
 * (Note) splinter and web browser initiation is using 'headless=True', so you won't see the Chrome browser popping in and out when the scraping is occurring.
-* (Issues) A few times when scraping USGS Astrogeology site, received Flask error when object could not be populated for data on #######. (Note to self: implement 'try' to avoid showing errors during scraping)
- * (Debugging) The scraping file scrape_mars.py can be run independently in a terminal to confirm its success.
+* (Note) there was no Mars current weather portion in this exercise.  Nothing to display.
+* (Debugging) The scraping file scrape_mars.py can be run independently in a terminal to confirm its success.
