@@ -6,22 +6,49 @@
 
 # Import Splinter, BeautifulSoup, and Pandas
 from splinter import Browser
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as bs
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 import time
 
-def scrape(web_url):
+def init_browser():
     executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
-    browser.visit(web_url)
+    return Browser('chrome', **executable_path, headless=False)
+
+def nasa_mars_news():
+    browser = init_browser()
+    print("Scraping the mars nasa news site")
+    mnns_url = "https://mars.nasa.gov/news/"
+    browser.visit(mnns_url)
     time.sleep(5)
     html = browser.html
-    soup = BeautifulSoup(html, 'html.parser')
-    # browser.quit()
-    return 
 
-def visit_nasa_mars_news():
-    # Visit the mars nasa news site
-    mnns_url = "https://mars.nasa.gov/news/"
-    scrape(mnns_url)
+    # Convert browser html to soup object
+    soup = bs(html, 'html.parser')
+    print("Scraping complete.")
+    browser.quit()
+
+    # Find first content title and the paragraph text
+    first_article = soup.find('div', { 'class' : 'list_text'})
+    news_title = first_article.a.text
+    news_p = first_article.find('div', { 'class' : 'article_teaser_body'}).text
+    mars_news = {
+        'news_title': news_title,
+        'news_p'    : news_p
+    }
+
+    # Return findings
+    return mars_news
+
+
+def jpl_feagured_image():
+    browser = init_browser()
+    print("Scraping JPL Space Images")
+    jpl_url = "https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html"
+    browser.visit(jpl_url)
+    time.sleep(5)
+    
+
+
+
+# def scrape():
