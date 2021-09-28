@@ -7,13 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        #Page_1 {
+          background-color: lightgray;
+          height: 200px;
+        }
+        h1 {
+            font-size: 70px;
+        }
+    </style>
     <title>Mars Scraping</title>
   </head>
   <!-- body -->
   <body>
       <div class="container-fluid">
-          <div class="jumbotron text-center">
+          <div class="jumbotron text-center border-bottom" id="Page_1">
             <h1>Mission to Mars</h1>
             <p>
                 <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
@@ -22,13 +31,50 @@
           <div class="row">
             <div class="col-md-12">
                 <div class="mars_fact">
-                    <h2><strong>Latest Mars News</strong></h2>
+                    <h2>Latest Mars News</h2>
                     <p class="mars_title">
-                        <strong>{{mars_dictionary.mars_news['news_title']}}</strong>
+                        <h3>{{mars_dictionary.mars_news['news_title']}}</h3>
+                    </p>
+                    <p class="mars_paragraph">
+                        {{mars_dictionary.mars_news['news_paragraph']}}
                     </p>
                 </div>
             </div>
           </div>
-
+          <div class="row">
+            <div class="col-md-8">
+                <div class="feat_image">
+                    <h2>Featured Mars Image</h2>
+                    <img src="{{mars_dictionary.mars_featured_image}}" alt="Featured Mars Image" width="800px" height="600px">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mars_facts">
+                    <h4>Mars Facts</h4>
+                    <p>
+                        {{mars_dictionary.mars_facts | safe}}
+                    </p>
+                </div>
+            </div>
+          </div>
+      </div>
+      <div class="container-fluid">
+        <div class="jumbotron text-center">
+            <h1>Mars Hemispheres</h1>
+            <hr>
+        </div>
+        <div class="row">
+            {% for hemisphere in mars_dictionary.mars_hemispheres %}
+            <div class="col-6 border">
+            </br>
+                  <div>
+                    <img width="600px" height="600px" src="{{ hemisphere['img_url'] | safe }}">
+                  </div>
+                  <div>
+                    <h4> {{ hemisphere['title'] | safe }} </h4>  
+                  </div>
+            </div>
+            {% endfor %}
+        </div>
       </div>
   </body>
