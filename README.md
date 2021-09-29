@@ -13,4 +13,5 @@ Web application that scrapes various websites for data related to the Mission to
 * (Note) Allow 15-20 seconds after clicking the 'scrape' button because there are 5-second sleep delays put in after each scrape in order to allow any browser activity to catch up.
 * (Note) splinter and web browser initiation is using 'headless=True', so you won't see the Chrome browser popping in and out when the scraping is occurring.
 * (Note) there was no Mars current weather portion in this exercise.  Nothing to display.
+* (Note) In the 'visualizations' folder you will find images of the web pages and of the scrape dataframe output.
 * (Debugging) The scraping file scrape_mars.py can be run independently in a terminal to confirm its success.

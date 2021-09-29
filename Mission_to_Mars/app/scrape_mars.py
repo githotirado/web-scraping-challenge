@@ -70,7 +70,7 @@ def mars_facts():
     mars_df.columns = ['description', 'value']
     mars_df.set_index('description', inplace=True)
     # mars_df.to_html('visualizations/table.html')
-    html_table = mars_df.to_html()
+    html_table = mars_df.to_html(justify='left')
     html_table = html_table.replace('\n', '')
 
     return html_table
