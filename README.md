@@ -1,5 +1,9 @@
 # web-scraping-challenge
-Web application that scrapes various websites for data related to the Mission to Mars.
+Web application that scrapes various websites for data related to Mars and Mars Mission data.
+
+# Site images:
+![mission_to_mars_main](Mission_to_Mars/visualizations/Mission_to_Mars_IMG1.png)
+![mission_to_mars_detail](Mission_to_Mars/visualizations/Mission_to_Mars_IMG2.png)
 
 # Setup
 * Install flask_pymongo (pip install Flask-PyMongo).
